@@ -31,7 +31,7 @@ const config: HardhatUserConfig = {
       httpHeaders: {
         Authorization: `Basic ${process.env.ROPSTEN_AUTH_CREDENTIALS}`
       }
-    },
+    }
   },
   gasReporter: {
     enabled: process.env.REPORT_GAS !== undefined,
