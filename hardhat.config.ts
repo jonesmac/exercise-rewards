@@ -19,6 +19,8 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
   }
 });
 
+// TODO - Look into copying contract abi to web-app/src/components/_context upon successful compile / deploy
+
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more
 
