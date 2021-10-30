@@ -1,5 +1,5 @@
 import { useReducer, useContext, createContext, ReactNode } from 'react';
-import builtContract from './8c1cd5eab28bc7cb0ae97fe45a71017d.json';
+import { abi, bytecode } from '../../external/ExerciseRewards.json';
 
 export enum ActionTypes {
   CONNECT = 'connect'
@@ -7,7 +7,10 @@ export enum ActionTypes {
 type Action = { type: ActionTypes, payload: any };
 type Dispatch = (action: Action) => void;
 type State = {
-  abi: string;
+  deployment: {
+    abi: any;
+    bytecode: string;
+  }
 };
 type ContractProviderProps = { children: ReactNode };
 
@@ -29,8 +32,8 @@ const contractReducer = (state: State, action: Action) => {
 };
 
 const ContractProvider = ({ children }: ContractProviderProps) => {
-  const { abi } = (builtContract as any).output.contracts['contracts/ExerciseRewards.sol'].ExerciseRewards;
-  const [state, dispatch] = useReducer(contractReducer, { abi });
+  console.log(abi, bytecode);
+  const [state, dispatch] = useReducer(contractReducer, { deployment: { abi, bytecode } });
 
   return (
     <ContractStateContext.Provider value={state}>
